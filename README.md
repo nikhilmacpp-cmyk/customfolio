@@ -1,16 +1,31 @@
-# React + Vite
+🏗️ How It Works
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Open the App — The home screen shows a form.
 
-Currently, two official plugins are available:
+Enter Details — Fill in your personal info, projects, skills, links, etc.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Submit — Click on the “Generate Portfolio” button.
 
-## React Compiler
+View Result — Your custom portfolio page is automatically generated based on the data you entered.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Frontend: React.js
 
-## Expanding the ESLint configuration
+State Management: Redux Toolkit
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Styling: CSS / TailwindCSS (based on your setup)
+
+Build Tool: Vite / CRA (depending on what you used)
+
+ <!-- For Developers  -->
+
+# Clone the repo
+git clone https://github.com/nikhilmacpp-cmyk/customfolio.git
+
+# Go inside the project
+cd customfolio
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm start
