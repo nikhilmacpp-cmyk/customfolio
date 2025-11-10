@@ -17,7 +17,7 @@ export const Navbar = (props) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const initialState = useSelector((state) => state.view);
-    const { activeView = '' } = initialState;
+    const { firstName = '' ,middleName='',lastName=''} = initialState;
     useEffect(() => {
         const handleSCroll = () => {
             setIsScrolled(window.scrollY > 10);
@@ -30,7 +30,7 @@ export const Navbar = (props) => {
             isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
         )}>
         <div
-            onClick={() => action({ type: 'FORM-EDIT', payload:activeView==='form'?'design':'form'})}
+            onClick={() => action({ type: 'FORM-EDIT', payload:'form'})}
             className="absolute cursor-pointer  ml-2 top-5 flex gap-1 items-center border border-1 hover:bg-[rgba(167,139,250,0.3)]
          border-purple-400 p-1 rounded-md transition-colors duration-200">
             <span>
@@ -41,7 +41,7 @@ export const Navbar = (props) => {
         <div className="container flex items-center justify-around">
             <a className="text-xl font-bold text-primary flex items-center" href="#home">
                 <span className="relative z-10">
-                    <span className="text-glow text-foreground">Nikhil PP</span> PortFolio
+                    <span className="text-glow text-foreground">{firstName} {middleName} {lastName}</span> PortFolio
                 </span>
             </a>
 
