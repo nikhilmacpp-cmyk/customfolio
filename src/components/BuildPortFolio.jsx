@@ -10,7 +10,7 @@ import { ThemeToggle } from "./ThemeToggle";
 
 const BuildPortFolio = (props) => {
     const {
-
+        action = ()=>{}
     } = props;
     return (<div className="min-h-screen bg-background text-foreground overflow-x-hidden">
         {/* Theme toggle */}
@@ -20,7 +20,9 @@ const BuildPortFolio = (props) => {
         <StartBackGround />
 
         {/* Nav bar */}
-        <Navbar />
+        <Navbar 
+        action={action}
+        />
 
         {/* Main Content */}
         <main>

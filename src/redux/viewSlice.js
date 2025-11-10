@@ -8,7 +8,7 @@ const viewSlice = createSlice({
     },
     reducers: {
         setActiveView: (state, action) => {
-            action?.payload
+            state.activeView = action.payload;
         }
     }
 })
