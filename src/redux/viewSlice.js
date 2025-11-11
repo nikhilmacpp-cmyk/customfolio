@@ -7,7 +7,8 @@ const viewSlice = createSlice({
         activeView: 'form',
         firstName:'',
         middleName:'',
-        aboutYou:''
+        tagLine:'',
+        isShowMyWork: false
     },
     reducers: {
         setActiveView: (state, action) => {
@@ -22,8 +23,11 @@ const viewSlice = createSlice({
         setLastName: (state, action) => {
             state.lastName = action.payload;
         },
-        setAboutYou: (state, action) => {
-            state.aboutYou = action.payload;
+        setTagLine: (state, action) => {
+            state.tagLine = action.payload;
+        },
+        setIsShowMyWork: (state, action) => {
+            state.isShowMyWork = action.payload;
         }
     }
 })
@@ -33,6 +37,7 @@ export const {
     setFirstName,
     setMiddleName,
     setLastName,
-    setAboutYou
+    setTagLine,
+    setIsShowMyWork
 } = viewSlice?.actions;
 export default viewSlice.reducer;

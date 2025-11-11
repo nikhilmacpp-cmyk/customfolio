@@ -2,7 +2,7 @@
 import BuildPortFolio from "../components/BuildPortFolio"
 import { PortfolioForm } from "../components/PortfolioForm"
 import { useDispatch, useSelector } from "react-redux"
-import { setAboutYou, setActiveView, setFirstName, setLastName, setMiddleName } from "../redux/viewSlice"
+import { setTagLine, setActiveView, setFirstName, setLastName, setMiddleName, setIsShowMyWork } from "../redux/viewSlice"
 import { useEffect } from "react"
 export const Home = () => {
   const initialState = useSelector((state) => state.view);
@@ -35,10 +35,14 @@ export const Home = () => {
         Dispatch(setLastName(payload))
         break;
       case 'ABOUT-YOU-CHANGE':
-        Dispatch(setAboutYou(payload))
+        Dispatch(setTagLine(payload))
+        break;
+      case 'SHOW-MY-WORK':
+        console.log('payload',payload)
+        Dispatch(setIsShowMyWork(payload))
         break;
       default:
-        console.log('Unknown action', act);
+        console.log('Unknown action type', act);
         break
     }
   }
