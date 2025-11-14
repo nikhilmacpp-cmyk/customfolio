@@ -1,5 +1,9 @@
 import { Briefcase, Code, User } from "lucide-react"
+import { useDispatch, useSelector } from "react-redux";
 export const AboutSection = () => {
+    const initialState = useSelector((state) => state.view);
+    const Dispatch = useDispatch()
+    const { aboutMeSection } = initialState;
     return <section id="about" className="py-24 px-4 relative">
         {" "}
         <div className="container mx-auto max-w-5xl">
@@ -8,27 +12,25 @@ export const AboutSection = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-6">
-                    <h3 className="text-xl font-semibold">Passionate web developer crafting innovative digital experiences</h3>
+                    <h3 className="text-xl font-semibold">Passionate {aboutMeSection?.designation}</h3>
                     <p className="text-muted-foreground">
-                        I'm a UI Developer with 3.7 years of experience building scalable and high-performance web applications using
-                        React.js, JavaScript, and Redux. I specialize in crafting responsive, secure, and optimized interfaces, with
-                        expertise in state management, performance optimization, and modern front-end best practices
+                        {aboutMeSection?.experienceAndIntrest}
                     </p>
 
-                    <p className="text-muted-foreground">
-                        I’m a passionate web developer and tech creator who loves turning ideas into engaging digital experiences.
+                    {/* <p className="text-muted-foreground">
+                        I'm a passionate web developer and tech creator who loves turning ideas into engaging digital experiences.
                         My goal is to build user-focused, accessible, and visually appealing web solutions that combine creativity
                         with clean, efficient code
-                    </p>
+                    </p> */}
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
                         <a href="#contact" className="cosmic-button">
                             Get In Touch
                         </a>
 
-                        <a href="/public/resume/nikhil-resume.pdf" 
-                        download={'nikhil-resume.pdf'}
-                        className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300">
+                        <a href="/public/resume/nikhil-resume.pdf"
+                            download={'nikhil-resume.pdf'}
+                            className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300">
                             Download CV
                         </a>
                     </div>
@@ -59,7 +61,7 @@ export const AboutSection = () => {
                                 <h4 className="font-semibold text-lg"> UI/UX Design </h4>
                                 <p className="text-muted-foreground">
                                     I craft elegant, user-friendly designs that focus on clarity, consistency,
-                                    and seamless interaction to enhance every user’s digital journey
+                                    and seamless interaction to enhance every user's digital journey
                                 </p>
                             </div>
                         </div>

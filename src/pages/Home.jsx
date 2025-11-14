@@ -2,12 +2,12 @@
 import BuildPortFolio from "../components/BuildPortFolio"
 import { PortfolioForm } from "../components/PortfolioForm"
 import { useDispatch, useSelector } from "react-redux"
-import { setTagLine, setActiveView, setFirstName, setLastName, setMiddleName, setIsShowMyWork } from "../redux/viewSlice"
+import { setTagLine, setActiveView, setFirstName, setLastName, setMiddleName, setIsShowMyWork, setAboutMeSection } from "../redux/viewSlice"
 import { useEffect } from "react"
 export const Home = () => {
   const initialState = useSelector((state) => state.view);
   const Dispatch = useDispatch()
-  const { activeView = '' } = initialState;
+  const { activeView = '',aboutMeSection } = initialState;
 
   useEffect(() => {
     if (activeView === "form") {
@@ -20,7 +20,7 @@ export const Home = () => {
   }, [activeView])
 
   const handleBuildPortFolio = (act) => {
-    const { type = '', payload = 'form' } = act;
+    const { type = '', payload = 'form',forValue='' } = act;
     switch (type) {
       case 'FORM-EDIT':
         Dispatch(setActiveView(payload))
@@ -38,8 +38,14 @@ export const Home = () => {
         Dispatch(setTagLine(payload))
         break;
       case 'SHOW-MY-WORK':
-        console.log('payload',payload)
         Dispatch(setIsShowMyWork(payload))
+        break;
+      case 'ADD-DESIGNATION':
+      case 'EXPERIENCE-INTREST':
+        Dispatch(setAboutMeSection({
+          ...aboutMeSection,
+          [forValue]:payload
+        }))
         break;
       default:
         console.log('Unknown action type', act);

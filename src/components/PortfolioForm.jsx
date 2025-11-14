@@ -2,15 +2,14 @@ import { useSelector } from "react-redux";
 
 export const PortfolioForm = (props) => {
     const initialState = useSelector((state) => state.view);
-    const { firstName = '', middleName = '', lastName = '',tagLine='', isShowMyWork } = initialState;
+    const { firstName = '', middleName = '', lastName = '', tagLine = '', isShowMyWork, aboutMeSection = '' } = initialState;
     const {
         action = () => { },
     } = props
-    console.log('isShowMyWork', isShowMyWork)
     return <div className="container border border-primary p-2 m-3">
         <form>
             {/* Name Section */}
-            <div className="grid grid-flow-col gap-2">
+            <div className="grid grid-flow-col gap-2 mt-1">
                 <div className="relative bg-white">
                     <input type="text" id="First Name"
                         defaultValue={firstName}
@@ -51,7 +50,7 @@ export const PortfolioForm = (props) => {
 
             {/* A Brief Explaination */}
 
-            <div className="relative mt-2 bg-white">
+            <div className="relative mt-3 bg-white">
                 <textarea
                     defaultValue={tagLine}
                     onChange={(e) => action({ type: 'ABOUT-YOU-CHANGE', payload: e.target.value })}
@@ -64,8 +63,123 @@ export const PortfolioForm = (props) => {
                     Tag Line</label>
             </div>
 
+            {/* About me  Section */}
+            <div className="relative bg-white  mt-3 w-fit sm:w-[24rem] md:w-[28rem]">
+                <input type="text" id="designation"
+                    name="designation"
+                    defaultValue={aboutMeSection?.designation}
+                    onChange={(e) => action({ type: 'ADD-DESIGNATION', payload: e.target.value, forValue: e.target.name })}
+                    className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                <label for="designation"
+                    className="absolute bg-transparent text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10
+                         origin-[0]  dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+                         peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 start-1 
+                         rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto bg-white">
+                    Designation</label>
+            </div>
 
-            <div className="mt-3 place-self-start">
+            <div className="relative bg-white mt-3">
+                <textarea
+                    defaultValue={aboutMeSection?.experienceAndIntrest}
+                    name="experienceAndIntrest"
+                    onChange={(e) => action({ type: 'EXPERIENCE-INTREST', payload: e.target.value, forValue: e.target.name })}
+                    className="block px-2.5 resize-none pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                <label for="experienceAndIntrest"
+                    className="absolute bg-transparent text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 
+                        origin-[0]  dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+                         peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 start-1
+                          rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto bg-white">
+                    Experience & Interests</label>
+            </div>
+
+            {/* Expertise interest management */}
+            <div className="grid grid-flow-col gap-2 mt-3">
+                <div>
+                    <div className="relative bg-white">
+                        <input type="text" id="expertise"
+                            name="expertise"
+                            defaultValue={''}
+                            onChange={(e) => action({ type: 'EXPERTISE-IN', payload: e.target.value ,forValue: e.target.name })}
+                            className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <label for="expertise"
+                            className="absolute bg-transparent text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10
+                         origin-[0]  dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+                         peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 start-1 
+                         rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto bg-white">
+                            Expertise In</label>
+                    </div>
+                    <div className="relative bg-white mt-2">
+                        <textarea
+                            defaultValue={''}
+                            name="expertiseAndInterest"
+                            onChange={(e) => action({ type: 'EXPERTISE-AND-INTREST', payload: e.target.value, forValue: e.target.name })}
+                            className="block px-2.5 resize-none pb-1.5 pt-3 w-full h-25 text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <label for="experienceAndIntrest"
+                            className="absolute bg-transparent text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 
+                        origin-[0]  dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+                         peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 start-1
+                          rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto bg-white">
+                            Explain Your Expertise</label>
+                    </div>
+                </div>
+
+                <div>
+                    <div className="relative bg-white">
+                        <input type="text" id="middle name"
+                            defaultValue={aboutMeSection?.designation}
+                            readOnly={true}
+                            className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <label for="Managing"
+                            className="absolute bg-transparent text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 
+                        origin-[0]  dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+                         peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 start-1 
+                         rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto bg-white">
+                            Designation</label>
+                    </div>
+                    <div className="relative bg-white mt-2">
+                        <textarea
+                            defaultValue={''}
+                            name="aboutYourRole"
+                            onChange={(e) => action({ type: 'ABOUT-YOUR-ROLE', payload: e.target.value, forValue: e.target.name })}
+                            className="block px-2.5 resize-none pb-1.5 pt-3 w-full h-25 text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <label for="aboutYourRole"
+                            className="absolute bg-transparent text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 
+                        origin-[0]  dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+                         peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 start-1
+                          rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto bg-white">
+                            About Your Role</label>
+                    </div>
+                </div>
+
+                <div>
+                    <div className="relative bg-white">
+                        <input type="text" id="management"
+                            defaultValue={'Managing'}
+                            readOnly={true}
+                            className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <label for="Managing"
+                            className="absolute bg-transparent text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 
+                        origin-[0]  dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+                         peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 start-1
+                          rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto bg-white">
+                            Management</label>
+                    </div>
+                    <div className="relative bg-white mt-2">
+                        <textarea
+                            defaultValue={''}
+                            name="managementExperience"
+                            onChange={(e) => action({ type: 'MANAGEMENT-EXPERIENCE', payload: e.target.value, forValue: e.target.name })}
+                            className="block px-2.5 resize-none pb-1.5 pt-3 w-full h-25 text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <label for="managementExperience"
+                            className="absolute bg-transparent text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 
+                        origin-[0]  dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+                         peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 start-1
+                          rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto bg-white">
+                            Describe Your Management Experience</label>
+                    </div>
+                </div>
+            </div>
+            {/* <div className="mt-3 text-left">
                 <label className="inline-flex items-center cursor-pointer" >
                     <input type="checkbox" value="" checked={isShowMyWork}
                         onChange={(e) =>
@@ -77,7 +191,7 @@ export const PortfolioForm = (props) => {
                     <span className={`ms-3 text-sm font-medium ${isShowMyWork ? 'text-gray-900' :'text-gray-400'} dark:text-gray-300`}>Show My Work</span>
                     <div className="relative w-11 h-6 ml-2 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600"></div>
                 </label>
-            </div>
+            </div> */}
 
 
             <button type="submit" onClick={() => action({ type: 'FORM-EDIT', payload: 'design' })}
