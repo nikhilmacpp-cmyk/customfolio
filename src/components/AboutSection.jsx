@@ -17,12 +17,6 @@ export const AboutSection = () => {
                         {aboutMeSection?.experienceAndIntrest}
                     </p>
 
-                    {/* <p className="text-muted-foreground">
-                        I'm a passionate web developer and tech creator who loves turning ideas into engaging digital experiences.
-                        My goal is to build user-focused, accessible, and visually appealing web solutions that combine creativity
-                        with clean, efficient code
-                    </p> */}
-
                     <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
                         <a href="#contact" className="cosmic-button">
                             Get In Touch
@@ -43,10 +37,9 @@ export const AboutSection = () => {
                                 <Code className="h-6 w-6 text-primary" />
                             </div>
                             <div className="text-left">
-                                <h4 className="font-semibold text-lg"> Web Development </h4>
+                                <h4 className="font-semibold text-lg"> {aboutMeSection?.expertise} </h4>
                                 <p className="text-muted-foreground">
-                                    I create responsive, high-performance websites using modern technologies,
-                                    focusing on clean design, smooth interactions, and exceptional user experiences
+                                    {aboutMeSection?.expertiseAndInterest}
                                 </p>
                             </div>
                         </div>
@@ -58,10 +51,9 @@ export const AboutSection = () => {
                                 <User className="h-6 w-6 text-primary" />
                             </div>
                             <div className="text-left">
-                                <h4 className="font-semibold text-lg"> UI/UX Design </h4>
+                                <h4 className="font-semibold text-lg"> {aboutMeSection?.designation} </h4>
                                 <p className="text-muted-foreground">
-                                    I craft elegant, user-friendly designs that focus on clarity, consistency,
-                                    and seamless interaction to enhance every user's digital journey
+                                    {aboutMeSection?.aboutYourRole}
                                 </p>
                             </div>
                         </div>
@@ -75,8 +67,7 @@ export const AboutSection = () => {
                             <div className="text-left">
                                 <h4 className="font-semibold text-lg"> Project Management</h4>
                                 <p className="text-muted-foreground">
-                                    I manage projects with clear communication, efficient planning, and timely delivery,
-                                    ensuring quality results through teamwork and strategic execution
+                                    {aboutMeSection?.managementExperience}
                                 </p>
                             </div>
                         </div>

@@ -11,7 +11,7 @@ const viewSlice = createSlice({
         tagLine: '',
         isShowMyWork: false,
         designation: '',
-        aboutMeSection: { 'designation': '', 'experienceAndIntrest': '','expertise':'','expertiseAndInterest':'' }
+        aboutMeSection: { 'designation': '', 'experienceAndIntrest': '','expertise':'','expertiseAndInterest':'','aboutYourRole':'' }
     },
     reducers: {
         setActiveView: (state, action) => {

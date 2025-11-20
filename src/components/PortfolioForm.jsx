@@ -98,7 +98,7 @@ export const PortfolioForm = (props) => {
                     <div className="relative bg-white">
                         <input type="text" id="expertise"
                             name="expertise"
-                            defaultValue={''}
+                            defaultValue={aboutMeSection?.expertise}
                             onChange={(e) => action({ type: 'EXPERTISE-IN', payload: e.target.value ,forValue: e.target.name })}
                             className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                         <label for="expertise"
@@ -110,11 +110,11 @@ export const PortfolioForm = (props) => {
                     </div>
                     <div className="relative bg-white mt-2">
                         <textarea
-                            defaultValue={''}
+                            defaultValue={aboutMeSection?.expertiseAndInterest}
                             name="expertiseAndInterest"
                             onChange={(e) => action({ type: 'EXPERTISE-AND-INTREST', payload: e.target.value, forValue: e.target.name })}
                             className="block px-2.5 resize-none pb-1.5 pt-3 w-full h-25 text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                        <label for="experienceAndIntrest"
+                        <label for="expertiseAndInterest"
                             className="absolute bg-transparent text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 
                         origin-[0]  dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
                          peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 start-1
@@ -125,7 +125,8 @@ export const PortfolioForm = (props) => {
 
                 <div>
                     <div className="relative bg-white">
-                        <input type="text" id="middle name"
+                        <input type="text" id="designation"
+                            name="designation"
                             defaultValue={aboutMeSection?.designation}
                             readOnly={true}
                             className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
@@ -138,7 +139,7 @@ export const PortfolioForm = (props) => {
                     </div>
                     <div className="relative bg-white mt-2">
                         <textarea
-                            defaultValue={''}
+                            defaultValue={aboutMeSection?.aboutYourRole}
                             name="aboutYourRole"
                             onChange={(e) => action({ type: 'ABOUT-YOUR-ROLE', payload: e.target.value, forValue: e.target.name })}
                             className="block px-2.5 resize-none pb-1.5 pt-3 w-full h-25 text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
@@ -166,7 +167,7 @@ export const PortfolioForm = (props) => {
                     </div>
                     <div className="relative bg-white mt-2">
                         <textarea
-                            defaultValue={''}
+                            defaultValue={aboutMeSection?.managementExperience}
                             name="managementExperience"
                             onChange={(e) => action({ type: 'MANAGEMENT-EXPERIENCE', payload: e.target.value, forValue: e.target.name })}
                             className="block px-2.5 resize-none pb-1.5 pt-3 w-full h-25 text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />

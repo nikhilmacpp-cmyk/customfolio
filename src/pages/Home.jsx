@@ -42,6 +42,10 @@ export const Home = () => {
         break;
       case 'ADD-DESIGNATION':
       case 'EXPERIENCE-INTREST':
+      case 'EXPERTISE-IN':
+      case 'EXPERTISE-AND-INTREST':
+      case 'ABOUT-YOUR-ROLE':
+      case 'MANAGEMENT-EXPERIENCE':
         Dispatch(setAboutMeSection({
           ...aboutMeSection,
           [forValue]:payload
