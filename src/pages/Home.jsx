@@ -7,7 +7,15 @@ import { useEffect } from "react"
 export const Home = () => {
   const initialState = useSelector((state) => state.view);
   const Dispatch = useDispatch()
-  const { activeView = '',aboutMeSection } = initialState;
+  const { activeView = '', aboutMeSection } = initialState;
+
+  const initialAboutMe = {
+    designation: "",
+    experienceAndIntrest: "",
+    expertise: "",
+    expertiseAndInterest: "",
+    aboutYourRole: ""
+  };
 
   useEffect(() => {
     if (activeView === "form") {
@@ -20,10 +28,18 @@ export const Home = () => {
   }, [activeView])
 
   const handleBuildPortFolio = (act) => {
-    const { type = '', payload = 'form',forValue='' } = act;
+    const { type = '', payload = 'form', forValue = '' } = act;
     switch (type) {
       case 'FORM-EDIT':
         Dispatch(setActiveView(payload))
+        break;
+      case 'RESET-FORM':
+        Dispatch(setFirstName(''))
+        Dispatch(setMiddleName(''))
+        Dispatch(setLastName(''))
+        Dispatch(setTagLine(''))
+        Dispatch(setIsShowMyWork(false))
+        Dispatch(setAboutMeSection(initialAboutMe))
         break;
       case 'FIRST-NAME-CHANGE':
         Dispatch(setFirstName(payload))
@@ -48,7 +64,7 @@ export const Home = () => {
       case 'MANAGEMENT-EXPERIENCE':
         Dispatch(setAboutMeSection({
           ...aboutMeSection,
-          [forValue]:payload
+          [forValue]: payload
         }))
         break;
       default:

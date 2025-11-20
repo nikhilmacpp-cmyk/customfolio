@@ -99,7 +99,7 @@ export const PortfolioForm = (props) => {
                         <input type="text" id="expertise"
                             name="expertise"
                             defaultValue={aboutMeSection?.expertise}
-                            onChange={(e) => action({ type: 'EXPERTISE-IN', payload: e.target.value ,forValue: e.target.name })}
+                            onChange={(e) => action({ type: 'EXPERTISE-IN', payload: e.target.value, forValue: e.target.name })}
                             className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                         <label for="expertise"
                             className="absolute bg-transparent text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10
@@ -195,12 +195,21 @@ export const PortfolioForm = (props) => {
             </div> */}
 
 
-            <button type="submit" onClick={() => action({ type: 'FORM-EDIT', payload: 'design' })}
-                className="text-purple-700 max-w-fit mt-2 cursor-pointer hover:text-white border border-purple-700
+            <div className="flex justify-center">
+                <button type="reset"
+                    onClick={() => action({ type: 'RESET-FORM', payload: 'clear' })}
+                    className="text-red-700 max-w-fit mt-2 cursor-pointer hover:text-white border border-red-700
+         hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium 
+         rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-400 dark:text-red-400
+          dark:hover:text-white dark:hover:bg-red-500 dark:focus:ring-red-900">
+                    Reset Form</button>
+                <button type="submit" onClick={() => action({ type: 'FORM-EDIT', payload: 'design' })}
+                    className="text-purple-700 max-w-fit mt-2 cursor-pointer hover:text-white border border-purple-700
          hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium 
          rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400
           dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">
-                Generate PortFolio</button>
+                    Generate PortFolio</button>
+            </div>
         </form>
     </div>
 }
