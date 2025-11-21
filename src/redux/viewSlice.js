@@ -11,7 +11,8 @@ const viewSlice = createSlice({
         tagLine: '',
         isShowMyWork: false,
         designation: '',
-        aboutMeSection: { 'designation': '', 'experienceAndIntrest': '','expertise':'','expertiseAndInterest':'','aboutYourRole':'' }
+        aboutMeSection: { 'designation': '', 'experienceAndIntrest': '','expertise':'','expertiseAndInterest':'','aboutYourRole':'' },
+        resume:null
     },
     reducers: {
         setActiveView: (state, action) => {
@@ -34,6 +35,9 @@ const viewSlice = createSlice({
         },
         setAboutMeSection: (state, action) => {
             state.aboutMeSection = action.payload;
+        },
+        setResume: (state, action) => {
+            state.resume = action.payload;
         }
     }
 })
@@ -45,6 +49,7 @@ export const {
     setLastName,
     setTagLine,
     setIsShowMyWork,
-    setAboutMeSection
+    setAboutMeSection,
+    setResume
 } = viewSlice?.actions;
 export default viewSlice.reducer;

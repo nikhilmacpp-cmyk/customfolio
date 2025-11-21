@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 export const AboutSection = () => {
     const initialState = useSelector((state) => state.view);
     const Dispatch = useDispatch()
-    const { aboutMeSection } = initialState;
+    const { aboutMeSection ,resume} = initialState;
+    const resumeURL = resume?.name ?  URL.createObjectURL(resume) : null;
     return <section id="about" className="py-24 px-4 relative">
         {" "}
         <div className="container mx-auto max-w-5xl">
@@ -22,11 +23,11 @@ export const AboutSection = () => {
                             Get In Touch
                         </a>
 
-                        <a href="/public/resume/nikhil-resume.pdf"
-                            download={'nikhil-resume.pdf'}
+                       {resume?.name && <a href={resumeURL}
+                            download={resume?.name}
                             className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300">
                             Download CV
-                        </a>
+                        </a>}
                     </div>
                 </div>
 

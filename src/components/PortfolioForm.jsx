@@ -2,10 +2,11 @@ import { useSelector } from "react-redux";
 
 export const PortfolioForm = (props) => {
     const initialState = useSelector((state) => state.view);
-    const { firstName = '', middleName = '', lastName = '', tagLine = '', isShowMyWork, aboutMeSection = '' } = initialState;
+    const { firstName = '', middleName = '', lastName = '', tagLine = '', isShowMyWork, aboutMeSection = '' ,resume} = initialState;
     const {
         action = () => { },
     } = props
+    console.log('resume',resume)
     return <div className="container border border-primary p-2 m-3">
         <form>
             {/* Name Section */}
@@ -180,6 +181,45 @@ export const PortfolioForm = (props) => {
                     </div>
                 </div>
             </div>
+
+            {/* Resume upload */}
+            <div className="mb-6 mt-3">
+                <label className="block mb-2 text-sm font-medium text-gray-700">
+                    Upload Resume
+                </label>
+
+                <div className="flex flex-col items-center justify-center w-full ">
+                    <label
+                        className="flex flex-col items-center justify-center w-full h-24 
+                 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer 
+                 bg-gray-50 hover:bg-gray-100"
+                    >
+                        <div className="flex flex-col items-center justify-center pt-4 pb-4 pointer-events-none">
+                            <svg aria-hidden="true" className="w-8 h-8 mb-2 text-gray-400" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                    d="M7 16V4a1 1 0 011-1h8a1 1 0 011 1v12m-4 5l-3-3m0 0l3-3m-3 3h12" />
+                            </svg>
+
+                            <p className="mb-1 text-sm text-gray-500">
+                                <span className="font-semibold">Click to upload</span> or drag and drop
+                            </p>
+                            <p className="text-xs text-gray-500">PDF only (Max 2MB)</p>
+                        </div>
+
+                        <input onChange={(e) => action({ type: 'ATTATCH-RESUME', payload: e.target.files })} type="file" accept="application/pdf" className="hidden" />
+                    </label>
+
+                    <input id="pdfInput" type="file" accept="application/pdf" className="hidden" />
+                </div>
+                {resume?.name && (
+                    <p className="mt-2 text-sm text-green-600">
+                        Selected: {resume.name}
+                    </p>
+                )}
+            </div>
+
+
             {/* <div className="mt-3 text-left">
                 <label className="inline-flex items-center cursor-pointer" >
                     <input type="checkbox" value="" checked={isShowMyWork}
