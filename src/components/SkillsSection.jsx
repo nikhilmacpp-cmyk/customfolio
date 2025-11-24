@@ -1,29 +1,12 @@
 import { useState } from "react"
 import { classNameFunction } from "../lib/Utils";
-
-const skills = [
-    // FrontEnd
-    { name: 'React Js', level: 90, category: 'Frontend' },
-    { name: 'Angular JS', level: 70, category: 'Frontend' },
-    { name: 'Next Js', level: 70, category: 'Frontend' },
-    { name: 'JavaScript', level: 90, category: 'Frontend' },
-    { name: 'HTML/CSS', level: 95, category: 'Frontend' },
-    { name: 'Tailwind CSS', level: 80, category: 'Frontend' },
-    { name: 'Material UI', level: 70, category: 'Frontend' },
-    { name: 'TypeScript', level: 70, category: 'Frontend' },
-
-    // Backend
-    { name: 'Node.js', level: 70, category: 'Backend' },
-    { name: 'MongoDB', level: 65, category: 'Backend' },
-    { name: 'Express JS', level: 65, category: 'Backend' },
-
-    // tools
-    { name: 'Git', level: 90, category: 'Tools' },
-    { name: 'VS Code', level: 95, category: 'Tools' },
-]
-const category = ["all", "Frontend", "Backend", "Tools"];
+import { useSelector } from "react-redux";
 export const SkillsSection = () => {
     const [activeCategory, setActiveCategory] = useState("all");
+     const initialState = useSelector((state) => state.view);
+    const { skills = [] } = initialState;
+    const category = ['all',...skills?.map(i=> i?.category)] || [];
+
     const filteredKills = activeCategory === "all" ? skills : skills.filter(skill => skill.category.toLowerCase() === activeCategory.toLowerCase());
     return <section id="skills" className="py-24 px-4 relative bg-secondary/30">
         <div className="container mx-auto max-w-5xl">
@@ -49,7 +32,7 @@ export const SkillsSection = () => {
                         <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
                             <div className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
                                 style={{
-                                    width: `${skill?.level}%`
+                                    width: `${skill?.level*10}%`
                                 }}
                             />
                         </div>

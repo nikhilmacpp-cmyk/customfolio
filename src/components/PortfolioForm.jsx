@@ -275,9 +275,11 @@ export const PortfolioForm = (props) => {
                                             type="text"
                                             value={skill.category}
                                             name={'category'}
-                                            onChange={e =>
-                                                action({ type: 'ADD-EDIT-SKILLS', payload: e.target.value, forValue: e.target.name,index })
-                                            }
+                                            onChange={e =>{
+                                                const value = e.target.value.trim();
+                                                const finalValue = value === "" ? "all" : value;
+                                                action({ type: 'ADD-EDIT-SKILLS', payload: finalValue, forValue: e.target.name,index })
+                                            }}
                                             className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60"
                                             placeholder="Frontend, Backend"
                                         />
