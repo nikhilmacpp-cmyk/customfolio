@@ -2,12 +2,12 @@
 import BuildPortFolio from "../components/BuildPortFolio"
 import { PortfolioForm } from "../components/PortfolioForm"
 import { useDispatch, useSelector } from "react-redux"
-import { setTagLine, setActiveView, setFirstName, setLastName, setMiddleName, setIsShowMyWork, setAboutMeSection, setResume } from "../redux/viewSlice"
+import { setTagLine, setActiveView, setFirstName, setLastName, setMiddleName, setIsShowMyWork, setAboutMeSection, setResume, setSkills } from "../redux/viewSlice"
 import { useEffect } from "react"
 export const Home = () => {
   const initialState = useSelector((state) => state.view);
   const Dispatch = useDispatch()
-  const { activeView = '', aboutMeSection } = initialState;
+  const { activeView = '', aboutMeSection, skills } = initialState;
 
   const initialAboutMe = {
     designation: "",
@@ -28,7 +28,8 @@ export const Home = () => {
   }, [activeView])
 
   const handleBuildPortFolio = (act) => {
-    const { type = '', payload = 'form', forValue = '' } = act;
+    console.log('act', act)
+    const { type = '', payload = 'form', forValue = '',index=0 } = act;
     switch (type) {
       case 'FORM-EDIT':
         Dispatch(setActiveView(payload))
@@ -41,6 +42,9 @@ export const Home = () => {
         Dispatch(setIsShowMyWork(false))
         Dispatch(setAboutMeSection(initialAboutMe))
         Dispatch(setResume(null))
+        Dispatch(setSkills([
+          { name: "", level: "", category: "" }, // default first row
+        ]))
         break;
       case 'FIRST-NAME-CHANGE':
         Dispatch(setFirstName(payload))
@@ -69,9 +73,17 @@ export const Home = () => {
         }))
         break;
       case 'ATTATCH-RESUME':
-        const temp =  URL.createObjectURL(payload?.[0]);
-        console.log('temp',temp)
         Dispatch(setResume(payload?.[0]))
+        break;
+      case 'ADD-SKILLS':
+        const updated = [...skills, { name: "", level: "", category: "" }];
+        Dispatch(setSkills(updated));
+        break;
+      case 'ADD-EDIT-SKILLS':
+        const updatedEntry = skills?.map((item,ind)=>
+        ind === index ? {...item,[forValue]:payload}:item
+        )
+        Dispatch(setSkills(updatedEntry))
       break;
       default:
         console.log('Unknown action type', act);

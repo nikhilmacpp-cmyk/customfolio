@@ -2,11 +2,11 @@ import { useSelector } from "react-redux";
 
 export const PortfolioForm = (props) => {
     const initialState = useSelector((state) => state.view);
-    const { firstName = '', middleName = '', lastName = '', tagLine = '', isShowMyWork, aboutMeSection = '' ,resume} = initialState;
+    const { firstName = '', middleName = '', lastName = '', tagLine = '', isShowMyWork, aboutMeSection = '', resume, skills = [] } = initialState;
     const {
         action = () => { },
     } = props
-    console.log('resume',resume)
+    console.log('skills', skills)
     return <div className="container border border-primary p-2 m-3">
         <form>
             {/* Name Section */}
@@ -183,7 +183,7 @@ export const PortfolioForm = (props) => {
             </div>
 
             {/* Resume upload */}
-            <div className="mb-6 mt-3">
+            <div className="mt-3">
                 <label className="block mb-2 text-sm font-medium text-gray-700">
                     Upload Resume
                 </label>
@@ -219,6 +219,91 @@ export const PortfolioForm = (props) => {
                 )}
             </div>
 
+            {/* Skills */}
+            <div className="flex mt-3 w-full">
+                <div className="mt-6 w-full">
+                    <p className="text-sm text-left pl-4 font-medium text-gray-700 mb-2">Skill's</p>
+
+                    <div className="space-y-4">
+                        {skills.map((skill, index) => (
+                            <div
+                                key={index}
+                                className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
+                            >
+                                <p className="text-xs font-semibold text-gray-500 mb-3">
+                                    Skill {index + 1}
+                                </p>
+
+                                <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+
+                                    {/* Skill Name */}
+                                    <div className="flex flex-col">
+                                        <label className="text-xs text-gray-500 mb-1">Skill Name</label>
+                                        <input
+                                            type="text"
+                                            value={skill.name}
+                                            name={'name'}
+                                            onChange={e =>
+                                                action({ type: 'ADD-EDIT-SKILLS', payload: e.target.value, forValue: e.target.name ,index})
+                                            }
+                                            className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60"
+                                            placeholder="e.g. React,JavaScript"
+                                        />
+                                    </div>
+
+                                    {/* Level (NUMBER) */}
+                                    <div className="flex flex-col">
+                                        <label className="text-xs text-gray-500 mb-1">Level (1-10)</label>
+                                        <input
+                                            type="number"
+                                            min="1"
+                                            max="10"
+                                            name={'level'}
+                                            value={skill.level}
+                                            onChange={e =>
+                                                action({ type: 'ADD-EDIT-SKILLS', payload: e.target.value, forValue: e.target.name ,index})
+                                            }
+                                            className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60"
+                                            placeholder="5"
+                                        />
+                                    </div>
+
+                                    {/* Category */}
+                                    <div className="flex flex-col">
+                                        <label className="text-xs text-gray-500 mb-1">Category</label>
+                                        <input
+                                            type="text"
+                                            value={skill.category}
+                                            name={'category'}
+                                            onChange={e =>
+                                                action({ type: 'ADD-EDIT-SKILLS', payload: e.target.value, forValue: e.target.name,index })
+                                            }
+                                            className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60"
+                                            placeholder="Frontend, Backend"
+                                        />
+                                    </div>
+
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Add Skill Button */}
+                    <div className="flex justify-start">
+                        <button
+                            type="button"
+                            onClick={() => action({ type: 'ADD-SKILLS', payload: '' })}
+                            className="mt-3 cursor-pointer inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80"
+                        >
+                            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-primary">
+                                +
+                            </span>
+                            <span>Add another skill</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
 
             {/* <div className="mt-3 text-left">
                 <label className="inline-flex items-center cursor-pointer" >
