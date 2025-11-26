@@ -2,12 +2,12 @@
 import BuildPortFolio from "../components/BuildPortFolio"
 import { PortfolioForm } from "../components/PortfolioForm"
 import { useDispatch, useSelector } from "react-redux"
-import { setTagLine, setActiveView, setFirstName, setLastName, setMiddleName, setIsShowMyWork, setAboutMeSection, setResume, setSkills } from "../redux/viewSlice"
+import { setTagLine, setActiveView, setFirstName, setLastName, setMiddleName, setIsShowMyWork, setAboutMeSection, setResume, setSkills, setProjectDetails } from "../redux/viewSlice"
 import { useEffect } from "react"
 export const Home = () => {
   const initialState = useSelector((state) => state.view);
   const Dispatch = useDispatch()
-  const { activeView = '', aboutMeSection, skills } = initialState;
+  const { activeView = '', aboutMeSection, skills, projectDetails } = initialState;
 
   const initialAboutMe = {
     designation: "",
@@ -16,6 +16,7 @@ export const Home = () => {
     expertiseAndInterest: "",
     aboutYourRole: ""
   };
+  const initialProjectState = { 'tagline': '', 'projectName': '', 'description': '', 'technology': '', 'link': '', 'projectImage': '' };
 
   useEffect(() => {
     if (activeView === "form") {
@@ -29,7 +30,7 @@ export const Home = () => {
 
   const handleBuildPortFolio = (act) => {
     console.log('act', act)
-    const { type = '', payload = 'form', forValue = '',index=0 } = act;
+    const { type = '', payload = 'form', forValue = '', index = 0 } = act;
     switch (type) {
       case 'FORM-EDIT':
         Dispatch(setActiveView(payload))
@@ -41,6 +42,7 @@ export const Home = () => {
         Dispatch(setTagLine(''))
         Dispatch(setIsShowMyWork(false))
         Dispatch(setAboutMeSection(initialAboutMe))
+        Dispatch(setProjectDetails([initialProjectState]))
         Dispatch(setResume(null))
         Dispatch(setSkills([
           { name: "", level: "", category: "" }, // default first row
@@ -80,11 +82,23 @@ export const Home = () => {
         Dispatch(setSkills(updated));
         break;
       case 'ADD-EDIT-SKILLS':
-        const updatedEntry = skills?.map((item,ind)=>
-        ind === index ? {...item,[forValue]:payload}:item
+        const updatedEntry = skills?.map((item, ind) =>
+          ind === index ? { ...item, [forValue]: payload } : item
         )
         Dispatch(setSkills(updatedEntry))
-      break;
+        break;
+      case 'DELETE-SKILL':
+        const updatedSkillField = skills?.filter((i, ind) => ind !== index) || [];
+        if (updatedSkillField?.length) Dispatch(setSkills(updatedSkillField))
+        break;
+      case 'ADD-PROJECTS':
+        const updatedProject = [...projectDetails, initialProjectState];
+        Dispatch(setProjectDetails(updatedProject));
+        break;
+      case 'DELETE-PROJECT':
+        const updatedProjectField = projectDetails?.filter((i, ind) => ind !== index) || [];
+        if (updatedProjectField?.length) Dispatch(setProjectDetails(updatedProjectField))
+        break;
       default:
         console.log('Unknown action type', act);
         break

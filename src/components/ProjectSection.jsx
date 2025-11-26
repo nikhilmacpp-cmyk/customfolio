@@ -1,4 +1,5 @@
 import { ArrowRight, ExternalLink, Github } from "lucide-react"
+import { useSelector } from "react-redux";
 
 const projects = [
     {
@@ -12,7 +13,10 @@ const projects = [
 ]
 
 export const ProjectSection = () => {
-    return <section id="projects" className="py-24 px-4 relative">
+    const initialState = useSelector((state) => state.view);
+    const { isShowMyWork} = initialState;
+
+    return isShowMyWork && <section id="projects" className="py-24 px-4 relative">
         <div className="container mx-auto max-w-5xl">
             <h2 className="text-3xl md:text-4xl mb-4 text-center">{" "}Feature <span className="text-primary">Project</span></h2>
 
