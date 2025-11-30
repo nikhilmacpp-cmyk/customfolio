@@ -99,6 +99,12 @@ export const Home = () => {
         const updatedProjectField = projectDetails?.filter((i, ind) => ind !== index) || [];
         if (updatedProjectField?.length) Dispatch(setProjectDetails(updatedProjectField))
         break;
+      case 'ADD-EDIT-PROJECT':
+        const updatedProjectEntry = projectDetails?.map((item, ind) =>
+          ind === index ? { ...item, [forValue]: payload } : item
+        )
+        Dispatch(setProjectDetails(updatedProjectEntry))
+        break;
       default:
         console.log('Unknown action type', act);
         break

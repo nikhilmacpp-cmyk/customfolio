@@ -7,7 +7,7 @@ export const PortfolioForm = (props) => {
     const {
         action = () => { },
     } = props
-    console.log('skills', skills)
+    console.log('projectDetails', projectDetails)
     return <div className="container border border-primary p-2 m-3">
         <form>
             {/* Name Section */}
@@ -357,8 +357,8 @@ export const PortfolioForm = (props) => {
                                     <div className="relative bg-white w-full">
                                         <input type="text" id="project-name"
                                             name="projectName"
-                                            defaultValue={middleName}
-                                            onChange={(e) => action({ type: 'MIDDLE-NAME-CHANGE', payload: e.target.value })}
+                                            value={proj?.projectName}
+                                            onChange={(e) => action({ type: 'ADD-EDIT-PROJECT', payload: e.target.value, forValue: e.target.name, index })}
                                             className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                         <label for="project-name"
                                             className="absolute bg-transparent text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 
@@ -370,44 +370,49 @@ export const PortfolioForm = (props) => {
                                     <div className="grid grid-flow-col gap-2 mt-2">
                                         <div className="relative bg-white mt-2">
                                             <textarea
-                                                defaultValue={aboutMeSection?.expertiseAndInterest}
-                                                name="expertiseAndInterest"
-                                                onChange={(e) => action({ type: 'EXPERTISE-AND-INTREST', payload: e.target.value, forValue: e.target.name })}
+                                                value={proj?.tagLine}
+                                                name="tagline"
+                                                onChange={(e) => action({ type: 'ADD-EDIT-PROJECT', payload: e.target.value, forValue: e.target.name, index })}
                                                 className="block px-2.5 resize-none pb-1.5 pt-3 w-full h-25 text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                            <label for="expertiseAndInterest"
+                                            <label for="tagline"
                                                 className="absolute bg-transparent text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 
                                                             origin-[0]  dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
                                                             peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 start-1
                                                             rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto bg-white">
-                                                Explain Your Expertise</label>
+                                                Tagline</label>
                                         </div>
                                         <div className="relative bg-white mt-2">
                                             <textarea
-                                                defaultValue={aboutMeSection?.expertiseAndInterest}
-                                                name="expertiseAndInterest"
-                                                onChange={(e) => action({ type: 'EXPERTISE-AND-INTREST', payload: e.target.value, forValue: e.target.name })}
+                                                defaultValue={proj?.description}
+                                                name="description"
+                                                onChange={(e) => action({ type: 'ADD-EDIT-PROJECT', payload: e.target.value, forValue: e.target.name, index })}
                                                 className="block px-2.5 resize-none pb-1.5 pt-3 w-full h-25 text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                            <label for="expertiseAndInterest"
+                                            <label for="description"
                                                 className="absolute bg-transparent text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 
                                                             origin-[0]  dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
                                                             peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 start-1
                                                             rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto bg-white">
-                                                Explain Your Expertise</label>
+                                                Explain Your Project</label>
                                         </div>
                                         <div className="relative bg-white mt-2">
                                             <textarea
-                                                defaultValue={aboutMeSection?.expertiseAndInterest}
-                                                name="expertiseAndInterest"
-                                                onChange={(e) => action({ type: 'EXPERTISE-AND-INTREST', payload: e.target.value, forValue: e.target.name })}
+                                                defaultValue={proj?.technology}
+                                                name="technology"
+                                                onChange={(e) => action({ type: 'ADD-EDIT-PROJECT', payload: e.target.value, forValue: e.target.name, index })}
                                                 className="block px-2.5 resize-none pb-1.5 pt-3 w-full h-25 text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                            <label for="expertiseAndInterest"
-                                                className="absolute bg-transparent text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 
-                                                            origin-[0]  dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
-                                                            peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 start-1
-                                                            rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto bg-white">
-                                                Explain Your Expertise</label>
+                                            <label
+                                                htmlFor="technology"
+                                                className="absolute bg-transparent text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 
+                                                            top-1 z-10 origin-[0] dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 
+                                                            peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 
+                                                            peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 start-1 rtl:peer-focus:translate-x-1/4 
+                                                            rtl:peer-focus:left-auto bg-white" >
+                                                Technology / Skills (separate by comma)
+                                            </label>
                                         </div>
                                     </div>
+                                    <div>
+                                    </div>   
                                 </div>
                             </div>
                         ))}
@@ -434,15 +439,15 @@ export const PortfolioForm = (props) => {
                 <button type="reset"
                     onClick={() => action({ type: 'RESET-FORM', payload: 'clear' })}
                     className="text-red-700 max-w-fit mt-2 cursor-pointer hover:text-white border border-red-700
-         hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium 
-         rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-400 dark:text-red-400
-          dark:hover:text-white dark:hover:bg-red-500 dark:focus:ring-red-900">
+                            hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium 
+                            rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-400 dark:text-red-400
+                            dark:hover:text-white dark:hover:bg-red-500 dark:focus:ring-red-900">
                     Reset Form</button>
                 <button type="submit" onClick={() => action({ type: 'FORM-EDIT', payload: 'design' })}
                     className="text-purple-700 max-w-fit mt-2 cursor-pointer hover:text-white border border-purple-700
-         hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium 
-         rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400
-          dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">
+                                hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium 
+                                rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400
+                                dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">
                     Generate PortFolio</button>
             </div>
         </form>
